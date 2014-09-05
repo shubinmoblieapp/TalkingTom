@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.widget.SlidingPaneLayout;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -22,6 +23,7 @@ public class PlayMusic extends Activity{
 	private Button mPlayPauseSongButton;
 	private Button mNextSongButton;
 	private Button mPreviousSongButton;
+	private Button mSDbuttonPlay;
 	private SeekBar mSeekBar;
 	
 	private PlaylistOptions playlistOptions;
@@ -40,6 +42,16 @@ public class PlayMusic extends Activity{
 		initializeVariables();
 		
 		//TODO Make a listview with all of the playlists available 
+		
+		mSDbuttonPlay.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				mMediaPlayer.playPause(mPlayPauseSongButton, getResources());
+	    		Log.d("Test Insert",  "Button pressed" );
+
+			}
+		});
 		
 		mPlayPauseSongButton.setOnClickListener(new OnClickListener() {
 			
@@ -90,6 +102,7 @@ public class PlayMusic extends Activity{
 		mPlayPauseSongButton = (Button) findViewById(R.id.play_button);
 		mNextSongButton = (Button) findViewById(R.id.forward_button);
 		mPreviousSongButton = (Button) findViewById(R.id.backward_button);
+		mSDbuttonPlay = (Button) findViewById(R.id.handlerButton);
 		mSeekBar = (SeekBar) findViewById(R.id.player_seekbar);
 		
 		

@@ -6,16 +6,16 @@
     android:background="@drawable/background">
     
     <LinearLayout 	android:id="@+id/controls_container_llayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_centerInParent="true">
+	       android:layout_width="wrap_content"
+	       android:layout_height="wrap_content"
+	       android:orientation="horizontal"
+	       android:layout_centerInParent="true">
 	    
-        <Button android:id="@+id/backward_button"
+       <Button android:id="@+id/backward_button"
 		    android:layout_width="43dp"
 		    android:layout_height="43dp"
 		    android:background="@drawable/button_backward"/>
-        
+       
 		<Button android:id="@+id/play_button"
 		    android:layout_width="120dp"
 		    android:layout_height="120dp"
@@ -28,10 +28,10 @@
 		    android:background="@drawable/button_forward"/>
 		
 	</LinearLayout>
-	
+        
     <SeekBar android:id="@+id/player_seekbar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" 
         android:layout_below="@+id/controls_container_llayout"/>
-	
+    
 </RelativeLayout>

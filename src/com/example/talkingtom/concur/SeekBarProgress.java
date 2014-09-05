@@ -50,7 +50,6 @@ public class SeekBarProgress implements Runnable {
 		
 		while (running) {
 	    	
-	    	
 	    	if(!isPaused){
 	    		mSeekBar.setMax(mMediaPlayer.getDuration());
 	    		mSetProgress = mMediaPlayer.getCurrentPosition();
