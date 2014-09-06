@@ -36,12 +36,10 @@ public class MediaPlayerCustom extends MediaPlayer{
 		Drawable resourcePlayButton =  resource.getDrawable(R.drawable.button_play);
 		Drawable resourcePauseButton = resource.getDrawable(R.drawable.button_pause);
 		
-		if(isPlaying()){
-			pause();
+		if(isPlaying() && mSeekBarRunnable.isPaused()){
 			
-			if(mSeekBarRunnable.isPaused()){
-				mSeekBarRunnable.pausePlaying();
-			}
+			pause();
+			mSeekBarRunnable.pausePlaying();
 			
 			button.setBackground(resourcePlayButton);
 		}else{

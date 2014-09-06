@@ -36,7 +36,7 @@ public class CreatePlaylist extends Activity implements OnCheckedChangeListener 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.create_playlist);
+		setContentView(R.layout.create_playlist_activity);
 		
 		initializeVariables();
 		listAllSongs();

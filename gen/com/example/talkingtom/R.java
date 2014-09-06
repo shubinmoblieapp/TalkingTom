@@ -59,10 +59,10 @@ public final class R {
         public static final int speakButton=0x7f06000c;
     }
     public static final class layout {
-        public static final int create_playlist=0x7f030000;
+        public static final int create_playlist_activity=0x7f030000;
         public static final int listview_adapter_layout=0x7f030001;
         public static final int main_activity=0x7f030002;
-        public static final int media_player=0x7f030003;
+        public static final int media_player_activity=0x7f030003;
         public static final int voice_recognition=0x7f030004;
     }
     public static final class string {
