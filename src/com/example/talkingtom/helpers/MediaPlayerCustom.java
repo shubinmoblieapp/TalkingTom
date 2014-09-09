@@ -36,8 +36,9 @@ public class MediaPlayerCustom extends MediaPlayer{
 		Drawable resourcePlayButton =  resource.getDrawable(R.drawable.button_play);
 		Drawable resourcePauseButton = resource.getDrawable(R.drawable.button_pause);
 		
-		if(isPlaying() && mSeekBarRunnable.isPaused()){
-			
+		Log.d("Test Insert", String.valueOf(isPlaying())+ " " + String.valueOf(mSeekBarRunnable.isPlaying()));
+
+		if(isPlaying() && mSeekBarRunnable.isPlaying()){
 			pause();
 			mSeekBarRunnable.pausePlaying();
 			
@@ -106,14 +107,13 @@ public class MediaPlayerCustom extends MediaPlayer{
 		
 		
 		if(mSeekBarRunnable.isRunning() && isSeekBarThreadSet){
-			Log.d("Test Insert", String.valueOf(mSeekBarRunnable.isRunning()));
-			if(mSeekBarRunnable.isPaused()){
+			if(!mSeekBarRunnable.isPlaying()){
 				mSeekBarRunnable.resumePlaying();
 			}
-			
 		}else if(isSeekBarThreadSet){
 			mSeekBarThread = new Thread(mSeekBarRunnable);
 			mSeekBarRunnable.start();
+			mSeekBarRunnable.resumePlaying();
 			mSeekBarThread.start();
 		}
 		

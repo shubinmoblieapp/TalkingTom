@@ -2,10 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.talkingtom.CreatePlaylist"
     android:orientation="vertical" >
 	
@@ -13,19 +9,7 @@
     <ListView android:id="@+id/song_container_listView"
         android:layout_width="match_parent"	
         android:layout_height="0dp"
-        android:layout_weight="5"/>
-
-    <EditText android:id="@+id/playlist_name_edittext"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:hint="@string/playlist_name_lable"/>
-    
-    <Button android:id="@+id/add_to_playlist_Button"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text="@string/add_to_playlist_button"
-        android:layout_gravity="bottom|center"
-        android:layout_weight="1"/>
+        android:layout_weight="5"
+        android:divider="@null"/>
 
 </LinearLayout>

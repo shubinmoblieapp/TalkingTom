@@ -8,5 +8,6 @@
 	<string name="playlist_name_lable">Enter playlist name</string>
     <string name="create_playlist_button">Create Playlist</string>
     <string name="open_mediaplayer_button">Open Media Player</string>
-        <string name="play_button">Play button</string>
+    <string name="play_button">Play button</string>
+    
 </resources>

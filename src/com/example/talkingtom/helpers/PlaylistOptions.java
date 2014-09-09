@@ -110,6 +110,26 @@ public class PlaylistOptions {
 		return playlistId;
 	}
 	
+	public List<String> getListOfPlaylists(){
+		
+		final String[] PROJECTION_PLAYLIST = new String[]{MediaStore.Audio.Playlists.NAME};
+		final Uri uriPlaylist = MediaStore.Audio.Playlists.EXTERNAL_CONTENT_URI;
+		
+		List playlistNames = new ArrayList<String>();
+		
+		Cursor cursor = mResolver.query(uriPlaylist, PROJECTION_PLAYLIST, null, null, null);
+		
+		if (cursor.moveToFirst()) {
+			
+			   do {
+				   playlistNames.add(cursor.getString(0));
+			   } while (cursor.moveToNext());
+			   
+		}
+		
+		return playlistNames;
+	}
+	
 	public List<Mp3Helper> getPlaylist(String playlistName){
 		
 		final Uri uriPlaylist = MediaStore.Audio.Playlists.Members.getContentUri("external", getPlaylistId(playlistName));

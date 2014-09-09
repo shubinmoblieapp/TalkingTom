@@ -1,49 +1,36 @@
 package com.example.talkingtom;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SlidingPaneLayout;
+import android.support.v4.widget.SlidingPaneLayout.PanelSlideListener;
+import android.util.Log;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
+import android.widget.ImageButton;
 
-public class MainActivity extends Activity {
+import com.example.talkingtom.adapters.CollectionPagerAddapter;
 
-	private Button mCreatePlaylistButton;
-	private Button mOpenMediaPlayer;
-	private Context mContext;
-	Intent mIntent;
+public class MainActivity extends FragmentActivity{
+
+	private ViewPager mPager;
+	private PagerAdapter mPagerAdapter;
+	private SlidingPaneLayout mDLayout;
+	private ImageButton mOpendDrawerButton;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_activity);
-		
 		initializeVariables();
 		
-		mCreatePlaylistButton.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				mIntent = new Intent(mContext, CreatePlaylist.class);
-				startActivity(mIntent);
-			}
-		});
-		
-		mOpenMediaPlayer.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				mIntent = new Intent(mContext, PlayMusic.class);
-				startActivity(mIntent);
-			}
-		});
 	}
-
+	
 	private void initializeVariables(){
-		mCreatePlaylistButton = (Button) findViewById(R.id.create_playlist_button);
-		mOpenMediaPlayer = (Button) findViewById(R.id.open_media_player);
-		mContext = this;
+//		mPager = (ViewPager) findViewById(R.id.viewpager);
+//		mPagerAdapter = new CollectionPagerAddapter(getSupportFragmentManager());
+//		mDLayout = (SlidingPaneLayout) findViewById(R.id.drawer_layout);
+//		mOpendDrawerButton = (ImageButton) findViewById(R.id.drawer_layout_button);
 	}
 }

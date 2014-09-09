@@ -5,8 +5,6 @@ import java.util.List;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.widget.SlidingPaneLayout;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -35,7 +33,7 @@ public class PlayMusic extends Activity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.media_player_activity);
+		setContentView(R.layout.media_player_fragment);
 		initializeVariables();
 		
 		//TODO Make a listview with all of the playlists available 
@@ -100,7 +98,7 @@ public class PlayMusic extends Activity{
 		
 		mMediaPlayer = new MediaPlayerCustom(mp3List, this);
 		
-		seekBarRunnable = new SeekBarProgress(mSeekBar, mMediaPlayer);
+//		seekBarRunnable = new SeekBarProgress(mSeekBar, mMediaPlayer);
 		
 		mMediaPlayer.setSeekBarRunnable(seekBarRunnable);
 	}

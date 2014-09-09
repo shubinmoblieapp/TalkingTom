@@ -1,6 +1,7 @@
 package com.example.talkingtom.concur;
 
 import android.util.Log;
+import android.widget.ProgressBar;
 import android.widget.SeekBar;
 
 import com.example.talkingtom.helpers.MediaPlayerCustom;
@@ -10,14 +11,14 @@ public class SeekBarProgress implements Runnable {
 	private SeekBar mSeekBar;
 	private MediaPlayerCustom mMediaPlayer;
 	private volatile boolean running;
-	private volatile boolean isPaused;
+	private volatile boolean isPlaying;
 	private int mSetProgress;
 	
 	public SeekBarProgress(SeekBar seekBar, MediaPlayerCustom mediaPlayer){
 		mSeekBar = seekBar;
 		mMediaPlayer = mediaPlayer;
 		running = false;
-		isPaused = false;
+		isPlaying = true;
 	}
 
     public void terminate() {
@@ -34,15 +35,15 @@ public class SeekBarProgress implements Runnable {
     }
     
     public void pausePlaying(){
-    	isPaused = true;
+    	isPlaying = false;
     }
 	
     public void resumePlaying(){
-    	isPaused = false;
+    	isPlaying = true;
     }
     
-    public boolean isPaused(){
-    	return isPaused;
+    public boolean isPlaying(){
+    	return isPlaying;
     }
     
 	@Override
@@ -50,10 +51,10 @@ public class SeekBarProgress implements Runnable {
 		
 		while (running) {
 	    	
-	    	if(!isPaused){
-	    		mSeekBar.setMax(mMediaPlayer.getDuration());
+	    	if(isPlaying){
 	    		mSetProgress = mMediaPlayer.getCurrentPosition();
-	    		Log.d("Test Insert",  "" + mSetProgress);
+	    		Log.d("Test Insert", String.valueOf(mSetProgress));
+	    		mSeekBar.setMax(mMediaPlayer.getDuration());
 		    	mSeekBar.setProgress(mSetProgress);
 	    	}
 	    	

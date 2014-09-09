@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="song_details_dialog">
+        <item>Play</item>
+        <item>Add to playlist</item>
+        <item>Delete</item>
+        <item>Details</item>
+    </string-array>
+</resources>

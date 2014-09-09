@@ -2,19 +2,21 @@ package com.example.talkingtom.adapters;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
+import android.app.FragmentManager;
 import android.content.Context;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.example.talkingtom.CreatePlaylist;
 import com.example.talkingtom.R;
+import com.example.talkingtom.dialogs.SongListDetailsDialog;
 import com.example.talkingtom.helpers.Mp3Helper;
 
 public class SongListViewAdapter extends ArrayAdapter{
@@ -22,14 +24,16 @@ public class SongListViewAdapter extends ArrayAdapter{
 	private int mResource;
 	private Context mContext;
 	private int mPosition;
+	private FragmentManager frManager;
+	private ImageButton mDetailsButton;
 	private List<Mp3Helper> mSongList;
 	
-	public SongListViewAdapter(Context context, int resource, List<Mp3Helper> objects) {
+	public SongListViewAdapter(Context context, int resource, List<Mp3Helper> objects, FragmentManager fm) {
 		super(context, resource, objects);
-		mResource = resource;
 		mContext = context;
 		mSongList = new ArrayList<Mp3Helper>();
 		mSongList = objects;
+		frManager = fm;
 	}
 
 	@Override
@@ -59,18 +63,33 @@ public class SongListViewAdapter extends ArrayAdapter{
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View view = convertView;
+		
 		LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		view = inflater.inflate(R.layout.listview_adapter_layout, null);
 		
-		CheckBox checkBox = (CheckBox) view.findViewById(R.id.song_select_CheckBox);
-		TextView songNameTextView = (TextView) view.findViewById(R.id.song_name_TextView);
+		final int pos = position;
 		
+		TextView songNameTextView = (TextView) view.findViewById(R.id.song_name_TextView);
 		songNameTextView.setText(mSongList.get(position).getTitle());
+		
+		ImageButton songDetailsButton = (ImageButton) view.findViewById(R.id.details_button);
+		
+		songDetailsButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				SongListDetailsDialog dialog = new SongListDetailsDialog();
+				
+				Bundle bundle = new Bundle();
+				bundle.putSerializable(dialog.SONG_DETAILS_KEY, mSongList.get(pos));
+				dialog.setArguments(bundle);
+				dialog.show(frManager,mSongList.get(pos).getTitle());
+				
+			}
+		});
 		
 		Log.d("CheckForNull", mSongList.get(position).getTitle());
 		
-		checkBox.setOnCheckedChangeListener( (CreatePlaylist) mContext);
-				
 		return view;
 	}
 
