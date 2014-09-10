@@ -1,5 +1,8 @@
 package com.example.talkingtom;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
@@ -8,12 +11,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.talkingtom.adapters.ArtistsListViewAdapter;
 import com.example.talkingtom.adapters.CollectionPagerAddapter;
+import com.example.talkingtom.utils.ArtistsFragment;
 
 public class AllCategoriesFragment extends Fragment{
 	private ViewPager mPager;
 	private PagerAdapter mPagerAdapter;
 	private View mView;
+	private List<Fragment> mFragmentList;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -30,6 +36,16 @@ public class AllCategoriesFragment extends Fragment{
 	
 	private void initializeVariables(){
 		mPager = (ViewPager) mView.findViewById(R.id.viewpager);
-		mPagerAdapter = new CollectionPagerAddapter(getActivity().getSupportFragmentManager());
+		mFragmentList = new ArrayList<Fragment>();
+		listOfFragments();
+		
+		mPagerAdapter = new CollectionPagerAddapter(getActivity().getSupportFragmentManager(), mFragmentList);
+	}
+	
+	private void listOfFragments(){
+		mFragmentList.add(new SongsFragment());
+		mFragmentList.add(new AlbumsFragment());
+		mFragmentList.add(new ArtistsFragment());
+		mFragmentList.add(new GenresFragment());
 	}
 }

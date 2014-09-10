@@ -1,27 +1,31 @@
 package com.example.talkingtom.adapters;
 
-import com.example.talkingtom.AllSongsFragment;
+import java.util.List;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.example.talkingtom.AlbumsFragment;
+
 public class CollectionPagerAddapter extends FragmentPagerAdapter {
 
-	public CollectionPagerAddapter(FragmentManager fm) {
+	private List<Fragment> mListOfFragments;
+	
+	public CollectionPagerAddapter(FragmentManager fm, List<Fragment> fragmentList) {
 		super(fm);
-		// TODO Auto-generated constructor stub
+		mListOfFragments = fragmentList;
 	}
 
 	@Override
-	public Fragment getItem(int item) {
-		return new AllSongsFragment();
+	public Fragment getItem(int position) {
+		return mListOfFragments.get(position);
 	}
 
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return 4;
+		return mListOfFragments.size();
 	}
 
 }
