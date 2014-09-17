@@ -9,7 +9,9 @@ import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.talkingtom.R;
 import com.example.talkingtom.concur.SeekBarProgress;
@@ -23,6 +25,7 @@ public class MediaPlayerCustom extends MediaPlayer{
 	private boolean isSeekBarThreadSet = false;
 	
 	public MediaPlayerCustom(){
+		mSongCounter = 0;
 	}
 	
 	public MediaPlayerCustom(List<Mp3Helper> mp3List, Context context){
@@ -30,14 +33,23 @@ public class MediaPlayerCustom extends MediaPlayer{
 		setMediaPlayerSource(context);
 		mSongCounter = 0;
 	}
+	
+	
+	public void setSongList(List<Mp3Helper> mp3List, Context context){
+		mMp3List = mp3List;
+		setMediaPlayerSource(context);
+	}
+	
+	public void setNewSongList(List<Mp3Helper> songList){
+		mMp3List = songList;
+	}
 
+	
 	public void playPause(Button button, Resources resource){
 		
 		Drawable resourcePlayButton =  resource.getDrawable(R.drawable.button_play);
 		Drawable resourcePauseButton = resource.getDrawable(R.drawable.button_pause);
 		
-		Log.d("Test Insert", String.valueOf(isPlaying())+ " " + String.valueOf(mSeekBarRunnable.isPlaying()));
-
 		if(isPlaying() && mSeekBarRunnable.isPlaying()){
 			pause();
 			mSeekBarRunnable.pausePlaying();
@@ -48,6 +60,15 @@ public class MediaPlayerCustom extends MediaPlayer{
 			button.setBackground(resourcePauseButton);
 		}
 	}
+	
+	public List<Mp3Helper> getCurrentPlaylist(){
+		return mMp3List;
+	}
+	
+	public Mp3Helper getCurrentSong(){
+		return mMp3List.get(mSongCounter);
+	}
+	
 	
 	public void nextSong(){
 		mSongCounter++;
@@ -61,6 +82,16 @@ public class MediaPlayerCustom extends MediaPlayer{
 		}else{
 			changeSong();
 		}
+	}
+	
+	public void nextSongAuto(){
+		mSongCounter++;
+		
+		if(mSongCounter == mMp3List.size()){
+			mSongCounter = 0;
+		}
+		
+		changeAndStartSong();
 	}
 	
 	public void previousSong(){
@@ -84,6 +115,37 @@ public class MediaPlayerCustom extends MediaPlayer{
 		if(mSeekBarThread != null && mSeekBarRunnable != null){
 			isSeekBarThreadSet = true;
 		}
+	}
+	
+	public void startSong(String filePath){
+		stop();
+		reset();
+		
+		try {
+			
+			setDataSource(filePath);
+			prepare();
+			
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(mSeekBarRunnable.isRunning() && isSeekBarThreadSet){
+			if(!mSeekBarRunnable.isPlaying()){
+				mSeekBarRunnable.resumePlaying();
+			}
+		}else if(isSeekBarThreadSet){
+			mSeekBarThread = new Thread(mSeekBarRunnable);
+			mSeekBarRunnable.start();
+			mSeekBarRunnable.resumePlaying();
+			mSeekBarThread.start();
+		}
+		
+		start();
 	}
 	
 	//-------------------------------Private Methods------------------------------------\\
@@ -119,6 +181,7 @@ public class MediaPlayerCustom extends MediaPlayer{
 		
 		start();
 	}
+	
 	
 	private void changeAndStartSong(){
 		stop();

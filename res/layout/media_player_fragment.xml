@@ -30,7 +30,13 @@
 		    android:layout_width="match_parent"
 		    android:layout_height="match_parent"
 		    android:orientation="vertical" 
-		    android:background="@drawable/background">
+		    android:background="@drawable/background"
+		    android:layout_gravity="bottom|center_horizontal">
+		    
+		    <ListView android:id="@+id/queue_lsitview"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_above="@+id/controls_container_llayout"/>
 		    
 		    <LinearLayout 	android:id="@+id/controls_container_llayout"
 			       android:layout_width="wrap_content"
@@ -61,6 +67,14 @@
 		        android:layout_height="wrap_content" 
 		        android:layout_below="@+id/controls_container_llayout"/>
 		    
+		    <TextView android:id="@+id/song_title_textview"
+ 			android:layout_width="wrap_content"
+ 			android:layout_height="wrap_content"
+ 			android:textSize="25sp"
+ 			android:layout_below="@+id/player_seekbar"
+ 			android:layout_centerHorizontal="true"
+ 			android:text="BOOOOM!"/>
+		    
 		</RelativeLayout>
-         
-</LinearLayout>
+		
+ </LinearLayout>

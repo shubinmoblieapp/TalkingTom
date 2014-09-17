@@ -1,4 +1,4 @@
-package com.example.talkingtom;
+package com.example.talkingtom.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.example.talkingtom.R;
+import com.example.talkingtom.R.id;
+import com.example.talkingtom.R.layout;
 import com.example.talkingtom.adapters.AlbumsListViewAdapter;
 import com.example.talkingtom.helpers.Songs;
 

@@ -10,19 +10,14 @@
         sothree:paralaxOffset="100dp"
         sothree:dragView="@+id/dragView">
     
-    <fragment android:name="com.example.talkingtom.AllCategoriesFragment"
+    <fragment android:name="com.example.talkingtom.fragments.AllCategoriesFragment"
              android:id="@+id/all_categories_fragment"
              android:layout_width="match_parent"
              android:layout_height="match_parent" />
-    
-    
-    
 
-    <fragment android:name="com.example.talkingtom.MusicPlayerFragment"
-	     android:id="@+id/dragView"
-	     android:layout_width="match_parent"
-	     android:layout_height="match_parent" />
-            
-    
+    <fragment android:name="com.example.talkingtom.fragments.MusicPlayerFragment"
+		     android:id="@+id/dragView"
+		     android:layout_width="match_parent"
+		     android:layout_height="match_parent" />
     
 </com.sothree.slidinguppanel.SlidingUpPanelLayout>

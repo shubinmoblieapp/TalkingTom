@@ -1,33 +1,31 @@
-package com.example.talkingtom;
+package com.example.talkingtom.fragments;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-import com.example.talkingtom.adapters.AlbumsListViewAdapter;
+import com.example.talkingtom.MainActivity;
+import com.example.talkingtom.MyApplication;
+import com.example.talkingtom.R;
+import com.example.talkingtom.R.id;
+import com.example.talkingtom.R.layout;
 import com.example.talkingtom.adapters.SongListViewAdapter;
-import com.example.talkingtom.helpers.Mp3Helper;
+import com.example.talkingtom.helpers.MediaPlayerCustom;
 import com.example.talkingtom.helpers.Songs;
 
-public class AlbumsFragment extends Fragment{
+public class SongsFragment extends Fragment{
 
 	private ListView songListView;
-	private Mp3Helper mMp3;
 	private Songs mSongsHelper;
-	private List<String> listOf;
-	private EditText mPlaylistNameEditText;
-	private Context mContext;
 	private View view;
-	private Songs mSongs;
+	private MusicPlayerFragment mMusicPlayer;
+	private MediaPlayerCustom mMediaPlayer;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,16 +37,14 @@ public class AlbumsFragment extends Fragment{
 		
 		initializeVariables();
 		
-		AlbumsListViewAdapter arrayAdapter = new AlbumsListViewAdapter(getActivity(), android.R.layout.simple_list_item_1, mSongs.getAllAlbums(), getActivity().getFragmentManager());
-		
-//		for(String name : mSongsHelper.getAllAlbums()){
-//			Log.d("Test Insert", name);
-//		}
+		mMediaPlayer = ((MyApplication)((MainActivity)getActivity()).getApplicationContext()).mediaPlayer;
+		Log.d("Test Insert", String.valueOf(mMediaPlayer == null));
+
+		SongListViewAdapter arrayAdapter = new SongListViewAdapter(getActivity(), android.R.layout.simple_list_item_1, mSongsHelper.getAllSongs(), getActivity().getFragmentManager());
 		
 		if(arrayAdapter != null && songListView != null){
 			songListView.setAdapter(arrayAdapter);
 		}
-		
 		
 		return view;
 	}
@@ -57,10 +53,8 @@ public class AlbumsFragment extends Fragment{
 	private void initializeVariables(){
 		songListView = (ListView) view.findViewById(R.id.song_container_listView);
 		
-		mContext = getActivity();
-		
 		mSongsHelper = new Songs(getActivity());
-		mSongs = new Songs(getActivity());
+		
 	}
 
 }

@@ -53,7 +53,6 @@ public class SeekBarProgress implements Runnable {
 	    	
 	    	if(isPlaying){
 	    		mSetProgress = mMediaPlayer.getCurrentPosition();
-	    		Log.d("Test Insert", String.valueOf(mSetProgress));
 	    		mSeekBar.setMax(mMediaPlayer.getDuration());
 		    	mSeekBar.setProgress(mSetProgress);
 	    	}
